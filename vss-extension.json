@@ -1,80 +1,80 @@
 {
-    "manifestVersion": 1,
-    "id": "vsts-extension-ts-seed-simple",
-    "version": "0.1.1",
-    "name": "vsts-extension-ts-seed-simple",
-    "scopes": [ "vso.work", "vso.work_write" ],
-    "description": "Describe your extension.",
-    "publisher": "your-publisher",
-    "icons": {
-        "default": "img/logo.png"
+  "manifestVersion": 1,
+  "id": "vsts-extension-ts-seed-simple",
+  "version": "0.1.1",
+  "name": "vsts-extension-ts-seed-simple",
+  "scopes": [ "vso.work", "vso.work_write" ],
+  "description": "Visual Studio Team Services Extension to summarize TFS backlog stats: story points, time invested and more",
+  "publisher": "ToniSubi",
+  "icons": {
+    "default": "img/logo.png"
+  },
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "tags": [
+    "Sample"
+  ],
+  "content": {
+    "details": {
+      "path": "details.md"
+    }
+  },
+  "links": {
+    "home": {
+      "uri": "https://bit.ly"
     },
-    "targets": [
-        {
-            "id": "Microsoft.VisualStudio.Services"
-        }
-    ],
-    "tags": [
-        "Sample"
-    ],
-    "content": {
-        "details": {
-            "path": "details.md"
-        }
+    "getstarted": {
+      "uri": "https://bit.ly"
     },
-    "links": {
-        "home": {
-            "uri": "https://bit.ly"
-        },
-        "getstarted": {
-            "uri": "https://bit.ly"
-        },
-        "learn": {
-            "uri": "https://bit.ly"
-        },
-        "support": {
-            "uri": "https://bit.ly"
-        },
-        "repository": {
-            "uri": "https://bit.ly"
-        },
-        "issues": {
-            "uri": "https://bit.ly"
-        }
+    "learn": {
+      "uri": "https://bit.ly"
     },
-    "branding": {
-        "color": "rgb(220, 235, 252)",
-        "theme": "light"
+    "support": {
+      "uri": "https://bit.ly"
     },
-    "files": [
-        {
-            "path": "img",
-            "addressable": true
-        },
-        {
-            "path": "build",
-            "addressable": true
-        },
-        {
-            "path": "index.html",
-            "addressable": true
-        }
-    ],
-    "categories": [
-        "Integrate"
-    ],
-    "contributions": [
-        {
-            "id": "vsts-extension-ts-seed-simple-action",
-            "type": "ms.vss-web.action-provider",
-            "description": "",
-            "targets": [
-                "ms.vss-work-web.work-item-context-menu"
-            ],
-            "properties": {
-                "group": "contributed",
-                "uri": "index.html"
-            }
-        }
-    ]
+    "repository": {
+      "uri": "https://bit.ly"
+    },
+    "issues": {
+      "uri": "https://bit.ly"
+    }
+  },
+  "branding": {
+    "color": "rgb(220, 235, 252)",
+    "theme": "light"
+  },
+  "files": [
+    {
+      "path": "img",
+      "addressable": true
+    },
+    {
+      "path": "build",
+      "addressable": true
+    },
+    {
+      "path": "index.html",
+      "addressable": true
+    }
+  ],
+  "categories": [
+    "Integrate"
+  ],
+  "contributions": [
+    {
+      "id": "vsts-extension-ts-seed-simple-action",
+      "type": "ms.vss-web.action-provider",
+      "description": "",
+      "targets": [
+        "ms.vss-work-web.work-item-context-menu"
+      ],
+      "properties": {
+        "group": "contributed",
+        "uri": "index.html"
+      }
+    }
+  ]
 }
