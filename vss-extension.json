@@ -1,8 +1,8 @@
 {
   "manifestVersion": 1,
-  "id": "vsts-extension-ts-seed-simple",
-  "version": "0.1.1",
-  "name": "vsts-extension-ts-seed-simple",
+  "id": "vsts-scrum-info",
+  "version": "0.1.6",
+  "name": "vsts-scrum-info",
   "scopes": [ "vso.work", "vso.work_write" ],
   "description": "Visual Studio Team Services Extension to summarize TFS backlog stats: story points, time invested and more",
   "publisher": "ToniSubi",
@@ -65,7 +65,7 @@
   ],
   "contributions": [
     {
-      "id": "vsts-extension-ts-seed-simple-action",
+      "id": "vsts-scrum-info-action",
       "type": "ms.vss-web.action-provider",
       "description": "",
       "targets": [
