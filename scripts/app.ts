@@ -1,26 +1,33 @@
 ///<reference types="vss-web-extension-sdk" />
 
 import { MessageHelper } from "./logic/messageHelper";
+import { WorkItemCalculations } from "./logic/workItemCalculations";
+
 
 var actionProvider = {
     getMenuItems: (context) => {
         return [<IContributedMenuItem>{
-            title: "Stories info stats",
+            title: "Scrum Info",
             action: (actionContext) => {
-                let workItemId = actionContext.id
-                    || (actionContext.ids && actionContext.ids.length > 0 && actionContext.ids[0])
-                    || (actionContext.workItemIds && actionContext.workItemIds.length > 0 && actionContext.workItemIds[0]);
-
+                // Get the list of selected items on the backlog
                 let workitemidlist = [];
-                for (var id in actionContext.workItemIds)
-                    workitemidlist.push(id);
-
-                debugger;
-
-                if (workitemidlist.length > 0) {
-                    let messageHelper = new MessageHelper();
-                    alert(messageHelper.format(workitemidlist));
+                for (var id in actionContext.workItemIds) {
+                    workitemidlist.push(actionContext.workItemIds[id]);
                 }
+
+                // REST query dependencies
+                VSS.require(["VSS/Service", "TFS/WorkItemTracking/RestClient"], function (VSS_Service, TFS_Wit_WebApi) {
+                    // Get the REST client
+                    var witClient = VSS_Service.getCollectionClient(TFS_Wit_WebApi.WorkItemTrackingHttpClient);
+
+                    // Present the items to the user
+                    witClient.getWorkItems(workitemidlist, null, null, 0).then(
+                        function (workItems) {
+                            let calculations = new WorkItemCalculations(workItems);
+                            calculations.getWorkItemsResults();
+                        });
+                });
+                debugger;
             }
         }];
     }

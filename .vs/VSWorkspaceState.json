@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\configs",
     "\\scripts",
     "\\scripts\\logic"
   ],
-  "SelectedNode": "\\scripts\\logic\\messageHelper.tests.ts",
+  "SelectedNode": "\\scripts\\logic\\workItemCalculations.ts",
   "PreviewInSolutionExplorer": false
 }
