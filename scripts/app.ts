@@ -24,7 +24,7 @@ var actionProvider = {
                     witClient.getWorkItems(workitemidlist, null, null, 0).then(
                         function (workItems) {
                             let calculations = new WorkItemCalculations(workItems);
-                            calculations.getWorkItemsResults();
+                            alert(calculations.getWorkItemsResults());
                         });
                 });
                 debugger;
