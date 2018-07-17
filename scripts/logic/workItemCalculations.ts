@@ -10,10 +10,11 @@ export class WorkItemCalculations {
         var storyPoints = this.getStoryPoints();
         var taskNumbers = this.getTaskEstimatedCompletedRemaining();
 
-        return "Selected work items StoryPoints: " + storyPoints
-            + ", Tasks Estimated: " + taskNumbers.originalestimate
-            + ", Tasks Completed: " + taskNumbers.completedwork
-            + ", Tasks Remaining: " + taskNumbers.remainingwork;
+        return "Selected work items stats:\n"
+            + "\nTotal StoryPoints: " + storyPoints
+            + "\nTasks Estimated: " + taskNumbers.originalestimate + "h"
+            + "\nTasks Completed: " + taskNumbers.completedwork + "h"
+            + "\nTasks Remaining: " + taskNumbers.remainingwork + "h";
     }
 
     private getStoryPoints() {
