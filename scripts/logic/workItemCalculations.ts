@@ -21,7 +21,7 @@ export class WorkItemCalculations {
 
         var storypoints = 0;
         stories.forEach(function (story, index) {
-            storypoints += story.fields["Microsoft.VSTS.Scheduling.StoryPoints"];
+            storypoints = (+story.fields["Microsoft.VSTS.Scheduling.StoryPoints"] || 0) + storypoints;
         });
 
         return storypoints;
@@ -32,9 +32,9 @@ export class WorkItemCalculations {
 
         var remainingwork = 0, originalestimate = 0, completedwork = 0;
         tasks.forEach(function (task, index) {
-            remainingwork += task.fields["Microsoft.VSTS.Scheduling.RemainingWork"];
-            originalestimate += task.fields["Microsoft.VSTS.Scheduling.OriginalEstimate"];
-            completedwork += task.fields["Microsoft.VSTS.Scheduling.CompletedWork"];
+            remainingwork = (+task.fields["Microsoft.VSTS.Scheduling.RemainingWork"] || 0) + remainingwork;
+            originalestimate = (+task.fields["Microsoft.VSTS.Scheduling.OriginalEstimate"] || 0) + originalestimate;
+            completedwork = (+task.fields["Microsoft.VSTS.Scheduling.CompletedWork"] || 0) + completedwork;
         });
 
         return { originalestimate, completedwork, remainingwork };
