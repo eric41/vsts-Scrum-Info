@@ -10,7 +10,7 @@ export class WorkItemCalculations {
         var storyPoints = this.getStoryPoints();
         var taskNumbers = this.getTaskEstimatedCompletedRemaining();
 
-        return "Nº Stories: " + storyPoints.storiesCount + ", Nº NICs: " + storyPoints.nicsCount + ", Nº Tasks: " + taskNumbers.tasksCount
+        return "Selected: " + storyPoints.storiesCount + " stories, " + storyPoints.nicsCount + " NICs, " + taskNumbers.tasksCount + " tasks"
             + "\n\nStories: " + storyPoints.storiesPoints + " SP total"
             + "\nNICs: " + storyPoints.nicsPoints + " SP total"
             + "\n\nTasks Estimated: "  + taskNumbers.estimate  
