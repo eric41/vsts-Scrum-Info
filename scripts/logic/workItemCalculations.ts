@@ -10,22 +10,34 @@ export class WorkItemCalculations {
         var storyPoints = this.getStoryPoints();
         var taskNumbers = this.getTaskEstimatedCompletedRemaining();
 
-        return "Selected work items stats:\n"
-            + "\nTotal StoryPoints: " + storyPoints
-            + "\nTasks Estimated: " + taskNumbers.originalestimate + "h"
-            + "\nTasks Completed: " + taskNumbers.completedwork + "h"
-            + "\nTasks Remaining: " + taskNumbers.remainingwork + "h";
+        return "Nº Stories: " + storyPoints.storiesCount + ", Nº NICs: " + storyPoints.nicsCount + ", Nº Tasks: " + taskNumbers.tasksCount
+            + "\n\nStories: " + storyPoints.storiesPoints + " SP total"
+            + "\nNICs: " + storyPoints.nicsPoints + " SP total"
+            + "\n\nTasks Estimated: "  + taskNumbers.estimate  
+            + "\nTasks Completed: "    + taskNumbers.completed 
+            + "\nTasks Remaining: "    + taskNumbers.remaining;
     }
 
     private getStoryPoints() {
         var stories = this.arrayOfWorkItems.filter(workitem => workitem.fields["System.WorkItemType"] == "User Story");
+        var nics = this.arrayOfWorkItems.filter(workitem => workitem.fields["System.WorkItemType"] == "NIC");
 
         var storypoints = 0;
         stories.forEach(function (story, index) {
             storypoints = (+story.fields["Microsoft.VSTS.Scheduling.StoryPoints"] || 0) + storypoints;
         });
 
-        return storypoints;
+        var nicspoints = 0;
+        stories.forEach(function (nic, index) {
+            nicspoints = (+nic.fields["Microsoft.VSTS.Scheduling.StoryPoints"] || 0) + nicspoints;
+        });
+
+        return {
+            storiesCount:  stories.length,
+            storiesPoints: storypoints,
+            nicsCount:     nics.length,
+            nicsPoints:    nicspoints
+        };
     }
 
     private getTaskEstimatedCompletedRemaining() {
@@ -38,7 +50,12 @@ export class WorkItemCalculations {
             completedwork = (+task.fields["Microsoft.VSTS.Scheduling.CompletedWork"] || 0) + completedwork;
         });
 
-        return { originalestimate, completedwork, remainingwork };
+        return {
+            tasksCount: tasks.length,
+            estimate: originalestimate,
+            completed: completedwork,
+            remaining: remainingwork
+        };
     }
 
 }
