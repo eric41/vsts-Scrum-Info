@@ -10,12 +10,17 @@ export class WorkItemCalculations {
         var storyPoints = this.getStoryPoints();
         var taskNumbers = this.getTaskEstimatedCompletedRemaining();
 
-        return "Selected: " + storyPoints.storiesCount + " stories, " + storyPoints.nicsCount + " NICs, " + taskNumbers.tasksCount + " tasks"
-            + "\n\nStories: " + storyPoints.storiesPoints + " SP total"
-            + "\nNICs: " + storyPoints.nicsPoints + " SP total"
-            + "\n\nTasks Estimated: "  + taskNumbers.estimate  
-            + "\nTasks Completed: "    + taskNumbers.completed 
-            + "\nTasks Remaining: "    + taskNumbers.remaining;
+        return "Selected: "
+            + storyPoints.storiesCount + " stories, "
+            + storyPoints.nicsCount    + " NICs, "
+            + taskNumbers.tasksCount   + " tasks\n"
+            + "\n"
+            + "Stories: "         + storyPoints.storiesPoints + " SP total\n"
+            + "NICs: "            + storyPoints.nicsPoints    + " SP total\n"
+            + "\n"
+            + "Tasks Estimated: " + taskNumbers.estimate      + "\n"
+            + "Tasks Completed: " + taskNumbers.completed     + "\n"
+            + "Tasks Remaining: " + taskNumbers.remaining;
     }
 
     private getStoryPoints() {
@@ -28,7 +33,7 @@ export class WorkItemCalculations {
         });
 
         var nicspoints = 0;
-        stories.forEach(function (nic, index) {
+        nics.forEach(function (nic, index) {
             nicspoints = (+nic.fields["Microsoft.VSTS.Scheduling.StoryPoints"] || 0) + nicspoints;
         });
 
