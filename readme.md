@@ -70,3 +70,4 @@ VSTS extension that provides information on backlog items, aggregating SP, #item
 > DIA Common Assets
 > Roche Diagnostics, SL
 > http://www.roche.com
+> https://github.com/tonisubi/vstsScrumExt
