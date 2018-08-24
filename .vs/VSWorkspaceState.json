@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\configs",
-    "\\scripts",
-    "\\scripts\\logic"
+    "\\img",
+    "\\scripts"
   ],
-  "SelectedNode": "\\tsconfig.json",
+  "SelectedNode": "\\ToniSubi.vsts-scrum-info-0.1.24.vsix",
   "PreviewInSolutionExplorer": false
 }

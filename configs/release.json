@@ -1,3 +1,5 @@
 {
-    "public": true
+  "id": "vsts-scrum-info",
+  "name": "vsts-scrum-info",
+  "public": true
 }

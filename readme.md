@@ -1,58 +1,72 @@
-## vsts-scrum-info ##
+# Scrum Info 
 
-Very simple seed project for developing VSTS extensions using Typescript. Utilizes Typescript, grunt, and tsd. Detailed explanation how to get started can be found at https://cschleiden.wordpress.com/2016/02/24/extending-vsts-setup/.
+VSTS extension that provides information on backlog items, aggregating SP, #items, work
 
-### Structure ###
-
-```
-/scripts            - Typescript code for extension
-/img                - Image assets for extension and description
-/typings            - Typescript typings
-
-details.md          - Description to be shown in marketplace   
-index.html          - Main entry point
-vss-extension.json  - Extension manifest
-```
-
-### Version History ###
+### Version History
 
 ```
-0.7.0 - Updated VSS SDK, moved from `typings` to `@types`
-0.6.0 - Updated VSS SDK to M104
-0.1.1 - Automatically increase extension's minor version when packaging.
+0.1.18 - 1.0 MVP, with the information showed in a popup.
 ```
 
-### Usage ###
+# Case 
 
-1. Clone the repository
-1. `npm install` to install required local dependencies
-2. `npm install -g grunt` to install a global copy of grunt (unless it's already installed)
-2. `grunt` to build and package the application
+### Problem
 
-#### Grunt ####
+*   In TFS is not possible to count SP, work, effort.    
+*   This feature is not standard in VS, and
+*   The next versions of TFS will be fully web-based.
 
-Three basic `grunt` tasks are defined:
+### Solution
 
-* `build` - Compiles TS files in `scripts` folder
-* `package-dev` - Builds the development version of the vsix package
-* `package-release` - Builds the release version of the vsix package
-* `publish-dev` - Publishes the development version of the extension to the marketplace using `tfx-cli`
-* `publish-release` - Publishes the release version of the extension to the marketplace using `tfx-cli`
+*   Provide a web-based Scrum Info extension 
+*   to get a summary of a backlog
+*	Alternative : 
+     * The Scrum Power Tools for Visual Studio 2013 IDE extension, 
+     * but the plugin is not updated anymore for newer VS versions
 
-Note: To avoid `tfx` prompting for your token when publishing, login in beforehand using `tfx login` and the service uri of ` https://marketplace.visualstudio.com`.
+### Value
 
-#### Including framework modules ####
+*   Less excel sheets
+*   Team productivity increase
+*   Get rid of the cumbersome task of counting SP
+*   Get to know Roche (VS marketplace)
 
-The VSTS framework is setup to initalize the requirejs AMD loader, so just use `import Foo = require("foo")` to include framework modules.
+### Advantage
 
-#### VS Code ####
+*    It's the first one to do this in TFS web,
+*    It's the only available for TFS 2015/2017
+*    We own the code/features
 
-The included `.vscode` config allows you to open and build the project using [VS Code](https://code.visualstudio.com/).
+### Channels
 
-#### Unit Testing ####
+*    Roche TFSprod/TFStest web interface
+*    Visual Studio Marketplace
 
-The project is setup for unit testing using `mocha`, `chai`, and the `karma` test runner. A simple example unit test is included in `scripts/logic/messageHelper.tests.ts`. To run tests just execute:
+### Target
 
-```
-grunt test
-```
+*   Delivery member who wants to gknow progress 
+*   SM/SPL/PO who is calculating capacities, velocities to plan and review sprints
+*	Early Adopter & requirements: Javi
+
+### Cost
+
+*    1 Dev, 48 innovation man-hours for this MVP 1.0 
+
+### Revenue
+
+* Immediate time savings on productivity for PO/SM/SPLs in DCA and in Roche:
+    * Half day per sprint (approx)
+
+
+# Acknowledgements 
+
+> Christopher Schleiden, Microsoft
+
+> Javi Almendrote, Roche
+
+# Author, Links 
+
+> Toni Subirana, 
+> DIA Common Assets
+> Roche Diagnostics, SL
+> http://www.roche.com
