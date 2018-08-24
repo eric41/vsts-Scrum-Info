@@ -1,11 +1,13 @@
 # Scrum Info 
 
-VSTS extension that provides information on backlog items, aggregating SP, #items, work
+VSS/VSTS extension that provides information on backlog items, aggregating SP, #items, work
 
 ### Version History
 
 ```
 0.1.18 - 1.0 MVP, with the information showed in a popup.
+
+(Future: 2.0 - Integrate the scrum info numbers in the side panel of VSS)
 ```
 
 # Case 
@@ -35,7 +37,7 @@ VSTS extension that provides information on backlog items, aggregating SP, #item
 
 *    It's the first one to do this in TFS web,
 *    It's the only available for TFS 2015/2017
-*    We own the code/features
+*    Open to add/customize features (i.e. "NIC" pbi type)
 
 ### Channels
 
@@ -44,9 +46,8 @@ VSTS extension that provides information on backlog items, aggregating SP, #item
 
 ### Target
 
-*   Delivery member who wants to gknow progress 
-*   SM/SPL/PO who is calculating capacities, velocities to plan and review sprints
-*	Early Adopter & requirements: Javi
+*   Team member who wants to know progress 
+*   SM/SPL/PO/PM/PL roles who need to calculate SP, work, capacities, velocities to plan and review sprints
 
 ### Cost
 
@@ -54,7 +55,7 @@ VSTS extension that provides information on backlog items, aggregating SP, #item
 
 ### Revenue
 
-* Immediate time savings on productivity for PO/SM/SPLs in DCA and in Roche:
+* Immediate time savings on productivity for PO/SM/SPLs:
     * Half day per sprint (approx)
 
 
