@@ -5,14 +5,15 @@ VSS/VSTS extension that provides information on backlog items, aggregating SP, #
 ### Version History
 
 ```
-0.1.18 - 1.0 MVP, with the information showed in a popup.
+0.1.x - 1.0 MVP, functionality just works :)
+	Limitations: Information appears in a popup. Tasks need to be visible and selected to be counted too.
 
-(Future: 2.0 - Integrate the scrum info numbers in the side panel of VSS)
+(Future: 2.0 - Integrate the scrum info numbers in the side panel of VSS, count tasks inside PBIs without being visible)
 ```
 
 # Usage
 
-Go to the backlog, select as many PBI/tasks that you need to count, right click on any of them and select the Scrum Info option of the context menu.
+Go to the backlog, select as many PBI/tasks that you need to count (open the PBIs for the tasks to be counted), right click on any of them and select the Scrum Info option of the context menu.
 
 
 # Case 
