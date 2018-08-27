@@ -77,4 +77,5 @@ Go to the backlog, select as many PBI/tasks that you need to count (open the PBI
 > DIA Common Assets
 > Roche Diagnostics, SL
 > http://www.roche.com
-> https://github.com/tonisubi/vstsScrumExt
+
+> https://github.com/tonisubi/vsts-scrum-info
