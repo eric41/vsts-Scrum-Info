@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "vsts-scrum-info",
-  "version": "0.1.29",
+  "version": "0.1.30",
   "name": "Scrum Info",
   "scopes": [ "vso.work", "vso.work_write" ],
   "description": "Visual Studio Team Services Extension to summarize TFS backlog stats: story points, time invested and more",
