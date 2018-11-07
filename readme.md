@@ -15,6 +15,8 @@ VSS/VSTS extension that provides information on backlog items, aggregating SP, #
 
 Go to the backlog, select as many PBI/tasks that you need to count (open the PBIs for the tasks to be counted), right click on any of them and select the Scrum Info option of the context menu.
 
+![Selecting Items and context menu entry](img/Demo1.png)
+![Showing Results](img/Demo2.png)
 
 # Case 
 
