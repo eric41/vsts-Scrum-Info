@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "vsts-scrum-info",
-  "version": "0.1.42",
+  "version": "0.1.47",
   "name": "Scrum Info",
   "scopes": [ "vso.work", "vso.work_write" ],
   "description": "Visual Studio Team Services Extension to summarize TFS backlog stats: story points, time invested and more",
@@ -74,6 +74,22 @@
       "properties": {
         "group": "contributed",
         "uri": "index.html"
+      }
+    },
+    {
+      "id": "Fabrikam.HelloWorld.Backlogs.Panel",
+      "type": "ms.vss-work-web.backlog-panel",
+      "description": "Adds a 'Hello' panel to Product and Iteration backlog pages.",
+      "targets": [
+        "ms.vss-work-web.requirement-backlog-toolpane",
+        "ms.vss-work-web.portfolio-backlog-toolpane",
+        "ms.vss-work-web.iteration-backlog-toolpane"
+      ],
+      "properties": {
+        "title": "Hello Panel Pane",
+        "name": "Hello Panel",
+        "uri": "scrumInfoPanel.html",
+        "registeredObjectId": "backlogPanelObject"
       }
     }
   ]
