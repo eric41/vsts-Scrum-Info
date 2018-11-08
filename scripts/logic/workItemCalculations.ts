@@ -3,7 +3,7 @@ export class WorkItemCalculations {
 
     public constructor(workItems = []) {
         this.arrayOfWorkItems = workItems;
-        console.log('WorkItems array: ' + JSON.stringify(workItems));
+        //console.log('WorkItems array: ' + JSON.stringify(workItems));
     }
 
     public getWorkItemsResults() {

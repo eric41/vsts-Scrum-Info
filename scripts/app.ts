@@ -24,10 +24,20 @@ var actionProvider = {
                     witClient.getWorkItems(workitemidlist, null, null, 0).then(
                         function (workItems) {
                             let calculations = new WorkItemCalculations(workItems);
-                            alert(calculations.getWorkItemsResults());
+                            //alert(calculations.getWorkItemsResults());
+
+                            var node = document.createElement("div");
+                            node.className = "velocity-chart small-chart-container";
+                            node.innerText = calculations.getWorkItemsResults();
+
+                            var node2 = document.createElement("div");
+                            node2.appendChild(node);
+
+                            var destination = document.querySelectorAll("div.backlog-hub-tile-region")[0];
+                            destination.insertBefore(node2, destination.firstChild);
                         });
                 });
-                debugger;
+                //debugger;
             }
         }];
     }
