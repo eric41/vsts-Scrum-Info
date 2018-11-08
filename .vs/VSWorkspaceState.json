@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\configs",
-    "\\img",
-    "\\scripts"
+    "\\img"
   ],
+  "SelectedNode": "\\testTsConfig.json",
   "PreviewInSolutionExplorer": false
 }

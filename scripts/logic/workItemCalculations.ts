@@ -10,17 +10,28 @@ export class WorkItemCalculations {
         var storyPoints = this.getStoryPoints();
         var taskNumbers = this.getTaskEstimatedCompletedRemaining();
 
-        return "Selected: "
-            + storyPoints.storiesCount + " stories, "
-            + storyPoints.nicsCount    + " NICs, "
-            + taskNumbers.tasksCount   + " tasks\n"
-            + "\n"
-            + "Stories: "         + storyPoints.storiesPoints + " SP total\n"
-            + "NICs: "            + storyPoints.nicsPoints    + " SP total\n"
-            + "\n"
-            + "Tasks Estimated: " + taskNumbers.estimate      + "\n"
-            + "Tasks Completed: " + taskNumbers.completed     + "\n"
+        var formattedText = this.formatText(storyPoints, taskNumbers);
+
+        return formattedText;
+    }
+
+    private formatText(storyPoints: { storiesCount: number; storiesPoints: number; nicsCount: number; nicsPoints: number; }, taskNumbers: { tasksCount: number; estimate: number; completed: number; remaining: number; }) {
+        var formattedText = "Selected: "
+            + storyPoints.storiesCount + " stories, ";
+        if (storyPoints.nicsCount > 0)
+            formattedText += storyPoints.nicsCount + " NICs, " + (storyPoints.nicsCount + storyPoints.storiesCount) + " SP";
+        formattedText +=
+            taskNumbers.tasksCount + " tasks\n"
+            + "--------------------------\n"
+            + "Stories: " + storyPoints.storiesPoints + " SP\n";
+        if (storyPoints.nicsCount > 0)
+            formattedText += "NICs: " + storyPoints.nicsPoints + " SP, \n"
+                + "Total: " + (storyPoints.nicsPoints + storyPoints.storiesPoints) + " SP\n";
+        formattedText += "--------------------------\n"
+            + "Tasks Estimated: " + taskNumbers.estimate + "\n"
+            + "Tasks Completed: " + taskNumbers.completed + "\n"
             + "Tasks Remaining: " + taskNumbers.remaining;
+        return formattedText;
     }
 
     private getStoryPoints() {
