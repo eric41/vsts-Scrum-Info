@@ -33,9 +33,12 @@ export class WorkItemCalculations {
     }
 
     private getStoryPoints() {
-        var stories = this.arrayOfWorkItems.filter(workitem => workitem.fields["System.WorkItemType"] == "User Story");
+        var stories = this.arrayOfWorkItems.filter(
+            workitem => workitem.fields["System.WorkItemType"] == "User Story" ||
+            (workitem.fields["System.WorkItemType"] == "Product Backlog Item" && workitem.fields["Roche.DP.VSTS.Complexity"] == "Story"));
         var nics = this.arrayOfWorkItems.filter(workitem => workitem.fields["System.WorkItemType"] == "NIC");
-        var features = this.arrayOfWorkItems.filter(workitem => workitem.fields["System.WorkItemType"] == "Feature");
+        var features = this.arrayOfWorkItems.filter(workitem => workitem.fields["System.WorkItemType"] == "Feature" ||
+            (workitem.fields["System.WorkItemType"] == "Product Backlog Item" && workitem.fields["Roche.DP.VSTS.Complexity"] == "Feature"));
 
         var storypoints = 0;
         stories.forEach(function (story, index) {
