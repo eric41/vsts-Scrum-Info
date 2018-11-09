@@ -20,41 +20,14 @@ var actionProvider = {
                     // Get the REST client
                     var witClient = VSS_Service.getCollectionClient(TFS_Wit_WebApi.WorkItemTrackingHttpClient);
 
-                    // Present the items to the user
+                    // Obtain, calculate and present the items to the user
                     witClient.getWorkItems(workitemidlist, null, null, 0).then(
                         function (workItems) {
+                            debugger;
                             let calculations = new WorkItemCalculations(workItems);
                             alert(calculations.getWorkItemsResults());
-                            debugger;
-                            $("#show").click(() => {
-                                Dialogs.show(Dialogs.ModalDialog, {
-                                    title: "ScrumInfo",
-                                    contentText: calculations.getWorkItemsResults(),
-                                    buttons: null
-                                });
-                            });
-
-                            /*debugger;
-
-
-                            var node = document.createElement("div");
-                            node.className = "velocity-chart small-chart-container";
-                            node.innerText = calculations.getWorkItemsResults();
-
-                            var node2 = document.createElement("div");
-                            node2.style.position = "absolute";
-                            node2.style.top = "10px";
-                            node2.style.width = "100%";
-                            node2.style.textAlign = "center";
-                            node2.style.background = "white";
-                            node2.style.fontSize = "small";
-                            node2.appendChild(node);
-
-                            var destination = document.querySelectorAll("body")[0];
-                            destination.insertBefore(node2, destination.firstChild);*/
                         });
                 });
-                debugger;
             }
         }];
     }
