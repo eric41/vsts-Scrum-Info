@@ -15,28 +15,27 @@ export class WorkItemCalculations {
         return formattedText;
     }
 
-    private formatText(storyPoints: { storiesCount: number; storiesPoints: number; nicsCount: number; nicsPoints: number; }, taskNumbers: { tasksCount: number; estimate: number; completed: number; remaining: number; }) {
-        var formattedText = "Selected: "
-            + storyPoints.storiesCount + " stories, ";
-        if (storyPoints.nicsCount > 0)
-            formattedText += storyPoints.nicsCount + " NICs, " + (storyPoints.nicsCount + storyPoints.storiesCount) + " SP";
-        formattedText +=
-            taskNumbers.tasksCount + " tasks\n"
-            + "--------------------------\n"
-            + "Stories: " + storyPoints.storiesPoints + " SP\n";
-        if (storyPoints.nicsCount > 0)
-            formattedText += "NICs: " + storyPoints.nicsPoints + " SP, \n"
-                + "Total: " + (storyPoints.nicsPoints + storyPoints.storiesPoints) + " SP\n";
-        formattedText += "--------------------------\n"
-            + "Tasks Estimated: " + taskNumbers.estimate + "\n"
-            + "Tasks Completed: " + taskNumbers.completed + "\n"
-            + "Tasks Remaining: " + taskNumbers.remaining;
-        return formattedText;
+    private formatText(storyPoints: { storiesCount: number; storiesPoints: number; nicsCount: number; nicsPoints: number; featuresCount: number; featuresPoints: number; }, taskNumbers: { tasksCount: number; estimate: number; completed: number; remaining: number; }) {
+        var formattedText =
+            (storyPoints.featuresCount > 0 ? storyPoints.featuresCount + " Features: " + storyPoints.featuresPoints + "sp\n" : "") +
+            (storyPoints.storiesCount > 0 ? storyPoints.storiesCount + " Stories: " + storyPoints.storiesPoints + "sp\n" : "") +
+            (storyPoints.nicsCount > 0 ? storyPoints.nicsCount + " NICs: " + storyPoints.nicsPoints + "sp\nTotal stories + NICs: " + (storyPoints.nicsPoints + storyPoints.storiesPoints) + "sp\n" : "");
+
+        if (taskNumbers.tasksCount > 0) {
+            formattedText += "--------------------------\n" 
+                + taskNumbers.tasksCount + " Tasks:\n"  
+                + "Estimated: " + taskNumbers.estimate + "\n"
+                + "Completed: " + taskNumbers.completed + "\n"
+                + "Remaining: " + taskNumbers.remaining;
+        }
+
+        return formattedText.length > 0 ? formattedText : "No PBIs selected";
     }
 
     private getStoryPoints() {
         var stories = this.arrayOfWorkItems.filter(workitem => workitem.fields["System.WorkItemType"] == "User Story");
         var nics = this.arrayOfWorkItems.filter(workitem => workitem.fields["System.WorkItemType"] == "NIC");
+        var features = this.arrayOfWorkItems.filter(workitem => workitem.fields["System.WorkItemType"] == "Feature");
 
         var storypoints = 0;
         stories.forEach(function (story, index) {
@@ -48,11 +47,18 @@ export class WorkItemCalculations {
             nicspoints = (+nic.fields["Microsoft.VSTS.Scheduling.StoryPoints"] || 0) + nicspoints;
         });
 
+        var featpoints = 0;
+        features.forEach(function (feature, index) {
+            featpoints = (+feature.fields["Microsoft.VSTS.Scheduling.StoryPoints"] || 0) + featpoints;
+        });
+
         return {
             storiesCount:  stories.length,
             storiesPoints: storypoints,
             nicsCount:     nics.length,
-            nicsPoints:    nicspoints
+            nicsPoints: nicspoints,
+            featuresCount: features.length,
+            featuresPoints: featpoints
         };
     }
 

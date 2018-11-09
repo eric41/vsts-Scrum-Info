@@ -25,7 +25,7 @@ var actionProvider = {
                         function (workItems) {
                             let calculations = new WorkItemCalculations(workItems);
                             alert(calculations.getWorkItemsResults());
-                            
+                            debugger;
                             $("#show").click(() => {
                                 Dialogs.show(Dialogs.ModalDialog, {
                                     title: "ScrumInfo",
