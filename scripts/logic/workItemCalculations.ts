@@ -39,7 +39,7 @@ export class WorkItemCalculations {
 
     private getTaggedStoryPoints(includeTags: string[], excludeTag: string = null) {
         var stories = this.arrayOfWorkItems.filter(
-            workitem => workitem.fields["System.Tags"] && 
+            workitem => !!workitem.fields["System.Tags"] && 
             (includeTags.every(tag => workitem.fields["System.Tags"].includes(tag)) &&
             !workitem.fields["System.Tags"].includes(excludeTag)) &&
             (workitem.fields["System.WorkItemType"] == "User Story" ||
