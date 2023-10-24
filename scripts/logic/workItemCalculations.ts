@@ -8,30 +8,52 @@ export class WorkItemCalculations {
 
     public getWorkItemsResults() {
         var storyPoints = this.getStoryPoints();
-        var taskNumbers = this.getTaskEstimatedCompletedRemaining();
+        //var taskNumbers = this.getTaskEstimatedCompletedRemaining();
+        var backendOnlyPoints = this.getTaggedStoryPoints(["Backend"], "Frontend");
+        var frontendOnlyPoints = this.getTaggedStoryPoints(["Frontend"], "Backend");
+        var combinedPoints = this.getTaggedStoryPoints(["Frontend", "Backend"]);
 
-        var formattedText = this.formatText(storyPoints, taskNumbers);
+        var formattedText = this.formatText(storyPoints, backendOnlyPoints, frontendOnlyPoints, combinedPoints);
 
         return formattedText;
     }
 
-    private formatText(storyPoints: { storiesCount: number; storiesPoints: number; nicsCount: number; nicsPoints: number; featuresCount: number; featuresPoints: number; bugsCount: number; bugsPoints: number; }, taskNumbers: { tasksCount: number; estimate: number; completed: number; remaining: number; }) {
+    private formatText(
+        storyPoints: { storiesCount: number; storiesPoints: number; nicsCount: number; nicsPoints: number; featuresCount: number; featuresPoints: number; bugsCount: number; bugsPoints: number; }, 
+        backendOnlyPoints: { storiesCount: number; storiesPoints: number; }, 
+        frontendOnlyPoints: { storiesCount: number; storiesPoints: number; }, 
+        combinedPoints: { storiesCount: number; storiesPoints: number; }
+    ) {
         var formattedText =
-            (storyPoints.featuresCount > 0 ? storyPoints.featuresCount + " Features: " + storyPoints.featuresPoints + "sp\n" : "") +
             (storyPoints.storiesCount > 0 ? storyPoints.storiesCount + " Stories: " + storyPoints.storiesPoints + "sp\n" : "") +
             (storyPoints.bugsCount > 0 ? storyPoints.bugsCount + " Bugs: " + storyPoints.bugsPoints + "sp\n" : "") +
-            (storyPoints.bugsCount > 0 && storyPoints.storiesCount > 0 ? "Total stories + bugs: " + (storyPoints.storiesPoints + storyPoints.bugsPoints) + "sp\n" : "") +
-            (storyPoints.nicsCount > 0 ? storyPoints.nicsCount + " NICs: " + storyPoints.nicsPoints + "sp\nTotal stories + NICs: " + (storyPoints.nicsPoints + storyPoints.storiesPoints) + "sp\n" : "");
+            (storyPoints.bugsCount > 0 && storyPoints.storiesCount > 0 ? "Total stories + bugs: " + (storyPoints.storiesPoints + storyPoints.bugsPoints) + "sp\n" : "");
 
-        if (taskNumbers.tasksCount > 0) {
-            formattedText += "--------------------------\n" 
-                + taskNumbers.tasksCount + " Tasks:\n"  
-                + "Estimated: " + taskNumbers.estimate + "\n"
-                + "Completed: " + taskNumbers.completed + "\n"
-                + "Remaining: " + taskNumbers.remaining;
-        }
+        formattedText += "--------------------------\n";
+        formattedText += (backendOnlyPoints.storiesCount > 0 ? backendOnlyPoints.storiesCount + " BE only items: " + backendOnlyPoints.storiesPoints + "sp\n" : "");
+        formattedText += (frontendOnlyPoints.storiesCount > 0 ? frontendOnlyPoints.storiesCount + " FE only items: " + frontendOnlyPoints.storiesPoints + "sp\n" : "");
+        formattedText += (combinedPoints.storiesCount > 0 ? combinedPoints.storiesCount + " Combined items: " + combinedPoints.storiesPoints + "sp\n" : "");
 
         return formattedText.length > 0 ? formattedText : "No PBIs selected";
+    }
+
+    private getTaggedStoryPoints(includeTags: string[], excludeTag: string = null) {
+        var stories = this.arrayOfWorkItems.filter(
+            workitem => workitem.fields["System.Tags"] && 
+            (includeTags.every(tag => workitem.fields["System.Tags"].includes(tag)) &&
+            !workitem.fields["System.Tags"].includes(excludeTag)) &&
+            (workitem.fields["System.WorkItemType"] == "User Story" ||
+            workitem.fields["System.WorkItemType"] == "Bug"));
+
+        var storypoints = 0;
+        stories.forEach(function (story, index) {
+            storypoints = (+story.fields["Microsoft.VSTS.Scheduling.StoryPoints"] || 0) + storypoints;
+        });
+
+        return {
+            storiesCount:  stories.length,
+            storiesPoints: storypoints
+        };
     }
 
     private getStoryPoints() {
